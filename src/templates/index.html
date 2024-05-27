@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Print example</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <label for="unit">Unit name:</label>
+      <input type="text" name="unit" />
+      <button onclick="print_report()">Print report</button>
+    </div>
+    <script>
+      const print_report = () => {
+        const input_value = document.querySelector('input[name="unit"]').value
+        console.log(input_value)
+        fetch("http://localhost:5000/print-report", {
+          method: "POST",
+          body: JSON.stringify({
+            unit_name: input_value
+          }),
+          headers: {
+            "Content-type": "application/json"
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
